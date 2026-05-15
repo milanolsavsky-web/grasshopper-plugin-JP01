@@ -1,0 +1,41 @@
+# Build output
+bin/
+obj/
+build/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+
+# User-specific files
+.DS_Store
+.env
+.env.local
+
+# Backup and temp files
+*.bak
+*.tmp
+*.3dmbak
+*.rhl
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln
+
+# Rider
+.idea/
+
+# MonoDevelop
+.userprefs
+
+# YAK packages
+*.yak
+
+# Claude Code local settings
+.claude/settings.local.json

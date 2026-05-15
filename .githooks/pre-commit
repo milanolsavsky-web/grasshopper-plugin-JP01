@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Auto-format all staged C# files with CSharpier before committing.
+# This hook is activated automatically on first build via the MSBuild
+# SetupGitHooks target. No manual setup needed.
+
+# Git hooks run in a minimal shell that may not have dotnet on PATH.
+# Source the user's profile to pick up the full PATH.
+if [[ -f "$HOME/.zshrc" ]]; then
+    source "$HOME/.zshrc" 2>/dev/null || true
+elif [[ -f "$HOME/.bashrc" ]]; then
+    source "$HOME/.bashrc" 2>/dev/null || true
+elif [[ -f "$HOME/.bash_profile" ]]; then
+    source "$HOME/.bash_profile" 2>/dev/null || true
+fi
+
+# Common dotnet install locations (macOS Homebrew, manual install, snap)
+for p in "/usr/local/share/dotnet" "$HOME/.dotnet" "/snap/dotnet-sdk/current" "/opt/homebrew/share/dotnet"; do
+    if [[ -d "$p" && ":$PATH:" != *":$p:"* ]]; then
+        export PATH="$p:$PATH"
+    fi
+done
+
+if ! command -v dotnet &>/dev/null; then
+    echo "WARNING: dotnet not found, skipping CSharpier formatting."
+    exit 0
+fi
+
+STAGED_CS=$(git diff --cached --name-only --diff-filter=ACM -- '*.cs' || true)
+
+if [[ -z "$STAGED_CS" ]]; then
+    exit 0
+fi
+
+echo "Formatting staged C# files with CSharpier..."
+
+# Format each staged file
+echo "$STAGED_CS" | while IFS= read -r file; do
+    if [[ -f "$file" ]]; then
+        dotnet csharpier "$file"
+        git add "$file"
+    fi
+done
+
+echo "Formatting complete."

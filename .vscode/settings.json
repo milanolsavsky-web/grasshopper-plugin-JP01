@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSave": true,
+    "editor.rulers": [100],
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/build": true,
+        "**/.vs": true
+    },
+    "dotnet.defaultSolution": "disable"
+}

@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <Version>0.1.0</Version>
+
+    <AssemblyName>PluginName</AssemblyName>
+    <RootNamespace>PluginName</RootNamespace>
+    <AssemblyTitle>PluginName</AssemblyTitle>
+    <Description>A Grasshopper plugin</Description>
+    <Company></Company>
+    <Copyright>Copyright © 2026</Copyright>
+
+    <!-- Output .gha instead of .dll so Grasshopper recognizes the plugin -->
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <TargetExt>.gha</TargetExt>
+
+    <!-- Build to a shared output folder (not per-config subfolders) -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>../build/</OutputPath>
+
+    <!-- Enforce .editorconfig rules at build time -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <!-- RhinoCommon + Grasshopper SDK (compile-only, Rhino provides them at runtime) -->
+  <ItemGroup>
+    <PackageReference Include="RhinoCommon" Version="7.13.21348.13001">
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Grasshopper" Version="7.13.21348.13001">
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <!-- Auto-configure git hooks path on restore (no manual setup needed) -->
+  <Target Name="SetupGitHooks" AfterTargets="Restore" Condition="Exists('../.git')">
+    <Exec Command="git config core.hooksPath .githooks" WorkingDirectory="$(MSBuildThisFileDirectory)/.." />
+  </Target>
+
+</Project>

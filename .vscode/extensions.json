@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ms-dotnettools.csdevkit",
+        "csharpier.csharpier-vscode",
+        "heaths.vscode-guid"
+    ]
+}

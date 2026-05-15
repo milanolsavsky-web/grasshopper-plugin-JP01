@@ -1,0 +1,63 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build: Release",
+            "type": "shell",
+            "command": "bash",
+            "windows": { "command": "powershell", "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\scripts\\build.ps1", "-Release"] },
+            "args": ["${workspaceFolder}/scripts/build.sh", "--release"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": { "reveal": "always", "panel": "new" },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build: Debug",
+            "type": "shell",
+            "command": "bash",
+            "windows": { "command": "powershell", "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\scripts\\build.ps1", "-Debug"] },
+            "args": ["${workspaceFolder}/scripts/build.sh", "--debug"],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "new" },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build: Clean + Release",
+            "type": "shell",
+            "command": "bash",
+            "windows": { "command": "powershell", "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\scripts\\build.ps1", "-Release", "-Clean"] },
+            "args": ["${workspaceFolder}/scripts/build.sh", "--release", "--clean"],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "new" },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "format: Check (CSharpier)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": ["csharpier", "--check", "src/"],
+            "presentation": { "reveal": "always", "panel": "new" },
+            "problemMatcher": []
+        },
+        {
+            "label": "format: Fix (CSharpier)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": ["csharpier", "src/"],
+            "presentation": { "reveal": "always", "panel": "new" },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean: All artifacts",
+            "type": "shell",
+            "command": "bash",
+            "windows": { "command": "powershell", "args": ["-Command", "Remove-Item -Recurse -Force -ErrorAction SilentlyContinue '${workspaceFolder}\\build', '${workspaceFolder}\\src\\obj'; Write-Host 'Clean complete'"] },
+            "args": ["-c", "rm -rf '${workspaceFolder}/build' '${workspaceFolder}/src/obj' && echo 'Clean complete'"],
+            "presentation": { "reveal": "always", "panel": "new" },
+            "problemMatcher": []
+        }
+    ]
+}

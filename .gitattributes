@@ -1,0 +1,10 @@
+# Force LF line endings for all text files
+* text=auto eol=lf
+
+# Explicitly mark binary files
+*.png binary
+*.ico binary
+*.gha binary
+*.dll binary
+*.dylib binary
+*.so binary

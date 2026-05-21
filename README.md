@@ -35,6 +35,8 @@ toto som zmenil
 
 ## Building
 
+350fk 
+
 **macOS / Linux:**
 ```bash
 ./scripts/build.sh --release

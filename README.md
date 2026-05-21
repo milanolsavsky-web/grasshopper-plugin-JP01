@@ -18,10 +18,7 @@ A Grasshopper plugin template for Rhino 7+, targeting both Windows and macOS.
 4. Copy `build/PluginName.gha` to your Grasshopper libraries folder (see [docs/setting-up-rhino.md](docs/setting-up-rhino.md))
 5. Open Rhino, start Grasshopper, find your component under the "PluginName" tab
 
-asdifhdsoif
-dsoifhdasoi
-iosdfudoisa
-dsaoifoias
+toto som zmenil
 
 ## Documentation
 

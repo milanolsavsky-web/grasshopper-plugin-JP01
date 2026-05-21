@@ -36,6 +36,7 @@ toto som zmenil
 ## Building
 
 Toto by mal byt konflikt
+350fk
 
 **macOS / Linux:**
 ```bash

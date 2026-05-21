@@ -18,8 +18,6 @@ A Grasshopper plugin template for Rhino 7+, targeting both Windows and macOS.
 4. Copy `build/PluginName.gha` to your Grasshopper libraries folder (see [docs/setting-up-rhino.md](docs/setting-up-rhino.md))
 5. Open Rhino, start Grasshopper, find your component under the "PluginName" tab
 
-toto som zmenil
-
 ## Documentation
 
 | Topic | Link |
@@ -35,17 +33,11 @@ toto som zmenil
 
 ## Building
 
-Toto by mal byt konflikt
-350fk
-
 **macOS / Linux:**
 ```bash
 ./scripts/build.sh --release
 ./scripts/build.sh --debug
 ```
-sdlkjhadslkf
-dsklfjadslf
-sajdaskljflas
 
 
 **Windows (PowerShell):**

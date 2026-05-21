@@ -38,6 +38,10 @@ A Grasshopper plugin template for Rhino 7+, targeting both Windows and macOS.
 ./scripts/build.sh --release
 ./scripts/build.sh --debug
 ```
+sdlkjhadslkf
+dsklfjadslf
+sajdaskljflas
+
 
 **Windows (PowerShell):**
 ```powershell

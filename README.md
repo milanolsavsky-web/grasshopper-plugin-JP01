@@ -35,6 +35,8 @@ toto som zmenil
 
 ## Building
 
+Toto by mal byt konflikt
+
 **macOS / Linux:**
 ```bash
 ./scripts/build.sh --release

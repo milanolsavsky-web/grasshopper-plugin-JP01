@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "repository": "milanolsavsky-web/grasshopper-plugin-JP01",
+  "main_ref": "refs/remotes/origin/main",
+  "inventory": [
+    "*"
+  ],
+  "integration": {
+    "budget_seconds": 300,
+    "requires_reviewed_plan": true,
+    "checks": [
+      {
+        "id": "delivery-policy",
+        "argv": [
+          "python3",
+          ".agents/delivery/repository.py",
+          "workflow"
+        ]
+      },
+      {
+        "id": "delivery-regressions",
+        "argv": [
+          "python3",
+          ".agents/delivery/checks.py",
+          "focused-runtime"
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "require_independent_machine": true,
+    "platforms": {
+      "linux": {
+        "checks": [
+          {
+            "id": "release-build",
+            "argv": [
+              "bash",
+              "scripts/build.sh",
+              "--release"
+            ],
+            "timeout_seconds": 7200
+          },
+          {
+            "id": "format",
+            "argv": [
+              "dotnet",
+              "csharpier",
+              "--check",
+              "src/"
+            ],
+            "timeout_seconds": 7200
+          },
+          {
+            "id": "full-delivery-regressions",
+            "argv": [
+              "python3",
+              ".agents/delivery/checks.py",
+              "full-runtime"
+            ],
+            "timeout_seconds": 300
+          }
+        ],
+        "environment_probes": [
+          {
+            "id": "python-version",
+            "argv": [
+              "python3",
+              "-c",
+              "import sys; assert sys.version_info >= (3,10), \"Install Python 3.10 or newer\""
+            ]
+          }
+        ],
+        "artifacts": []
+      }
+    }
+  },
+  "release": {
+    "blocked_reason": "No behavioral test suite; compile and style do not establish plugin runtime acceptance."
+  }
+}

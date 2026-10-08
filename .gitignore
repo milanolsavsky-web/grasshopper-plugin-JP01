@@ -39,3 +39,15 @@ project.lock.json
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Local delivery state and Python caches
+.delivery-state/
+.agents/delivery/__pycache__/
+.agents/delivery/cloud.local.json
+delivery-results/
+
+# Local delivery state and Python caches
+.delivery-state/
+.agents/delivery/__pycache__/
+.agents/delivery/cloud.local.json
+delivery-results/
